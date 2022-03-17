@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Hello {{ korisnik }} - metoda: {{ metoda }}</h1>
+
+<textarea name="" id="" cols="30" rows="10">{{ ocr }}</textarea>
+<form action="" method="post" enctype="multipart/form-data">
+
+
+    {{ form.picture() }}
+    <br>
+    {{ form.submit(class="btn btn-outline-success") }}
+
+</form>
+
+
+{% endblock content %}
