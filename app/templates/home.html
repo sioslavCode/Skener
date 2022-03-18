@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello {{ korisnik }} - metoda: {{ metoda }}</h1>
+<h2>Picture to TEXT converter!</h2>
 
-<textarea name="" id="" cols="30" rows="10">{{ ocr }}</textarea>
-<form action="" method="post" enctype="multipart/form-data">
-
-
-    {{ form.picture() }}
+<textarea name="" id="" cols="30" rows="10">{{ text }}</textarea>
+<form method=post enctype=multipart/form-data>
+    <input type=file name=file>
     <br>
-    {{ form.submit(class="btn btn-outline-success") }}
-
-</form>
+    <input type=submit value=Upload>
+  </form>
 
 
 {% endblock content %}

@@ -11,22 +11,10 @@ app.secret_key = b'_5#y2Lg"F4Qdawd8z\n\xec]/'
 @app.route('/', methods=["GET", "POST"])
 @app.route('/home')
 def home():
-    form = PictureForm()
-    
-    if request.method == "POST":
-        ocr = SadrzajForm()
-        image = Image.open(ocr)
-        text = pytesseract.image_to_string(image)
-        return render_template("home.html", title="title", korisnik="Sio", metoda=metoda, form=form)
-    else:
-        text = pytesseract.image_to_string(image)
-        metoda = "GET"
-        return render_template("home.html", title="title", korisnik="Sio", metoda=metoda, form=form, ocr=text)
+    text = ""
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save('./uploads/file.png')
+        text = pytesseract.image_to_string(Image.open(f))
 
-
-class PictureForm(FlaskForm):
-    picture = FileField('Select document')
-    submit = SubmitField('Submit')
-
-class SadrzajForm(FlaskForm):
-    sadrzaj= TextAreaField("Teksst")
+    return render_template("home.html", text=text)
